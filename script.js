@@ -1,3 +1,9 @@
+const operationChar = document.querySelectorAll(".op-char");
+const displayScreen = document.querySelector("#display-screen");
+const equalBtn = document.querySelector("#equal-btn");
+const clearBtn = document.querySelector("#clear-btn");
+let firstNum, secondNum, operand;
+
 function add(num1,num2){
     return num1 + num2
 }
@@ -29,4 +35,8 @@ function operate(firstNum,secondNum,operand){
     }
 }
 
-let firstNum, secondNum, operand;
+operationChar.forEach(
+    operationChar => operationChar.addEventListener(
+        "click", () => {displayScreen.value = `${displayScreen.value + operationChar.innerHTML}`}
+    )
+);
