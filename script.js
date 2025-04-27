@@ -35,8 +35,46 @@ function operate(firstNum,secondNum,operand){
     }
 }
 
+function operandReco(char){
+    switch (char) {
+        case "+":
+            return true
+            break;
+        case "-":
+            return true
+            break;
+        case "*":
+            return true
+            break;
+        case "×":
+            return true
+            break;
+        case "/":
+            return true
+            break;
+        case "÷":
+            return true
+            break;
+        default:
+            return false
+            break;
+    }
+}
+
 operationChar.forEach(
     operationChar => operationChar.addEventListener(
         "click", () => {displayScreen.value = `${displayScreen.value + operationChar.innerHTML}`}
     )
+);
+
+equalBtn.addEventListener(
+    'click', () => {
+        // convert the input from string to an array so i can recognize the first, second number and the operator through array methods
+        let expression = displayScreen.value.split("");
+        operand = expression.find(operandReco);
+        // convert the string to an integer through parseInt()
+        firstNum = parseInt(expression.slice(0,expression.findIndex(operandReco)).join(""));
+        secondNum = parseInt(expression.slice(expression.findIndex(operandReco) + 1 , expression.length).join(""));
+        displayScreen.value = operate(firstNum,secondNum,operand);
+        }
 );
